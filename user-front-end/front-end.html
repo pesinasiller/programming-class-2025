@@ -3,14 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>ES6+ with API</title>
+    <script>
+      async function fetchUser() {
+        const nameInput = document.getElementById("name-input").value;
+        console.log({nameInput})
+
+
+        const responseFromOurAPI = await fetch("http://127.0.0.1:3000/user/?name=" + nameInput);   
+        
+        const ourAPIresponseJSON = await responseFromOurAPI.json();
+        document.getElementById("user-name").innerHTML = ourAPIresponseJSON.name;
+        document.getElementById("country").innerHTML = ourAPIresponseJSON.country;
+        document.getElementById("our-api-image").src = ourAPIresponseJSON.profilePicture
+    
+      }
+    </script>
   </head>
   <body>
+
+        
+    <input type="text" id="name-input" placeholder="Type a name" />
+    <button onclick="fetchUser()" id="fetch-user-button">Fetch User</button>
+
     <h1>Random User</h1>
 
     <div id="user-name"></div>
-    <img id="our-api-image" />
+    <div id="country"></div>
+
+
+
+
+
+    <img id="our-api-image" style="width: 300px;" />
     <script type="module">
         // external API
+
+        /*
       const res = await fetch("https://randomuser.me/api/");
       const data = await res.json(); // parsing
       const user = data.results[0];
@@ -18,14 +46,22 @@
       const { first, last, title } = name;
       document.getElementById("user-name").innerHTML =
         "User name from randomuser.me: " + title + " " + first + " " + last;
-
+*/
 
         // our own api
       const responseFromOurAPI = await fetch("http://127.0.0.1:3000/user/?name=mahdia");   
-      console.log({ responseFromOurAPI })
+
       const ourAPIresponseJSON = await responseFromOurAPI.json();
-      console.log(ourAPIresponseJSON)
+      
+      
+      document.getElementById("user-name").innerHTML = ourAPIresponseJSON.name;
+
+      document.getElementById("country").innerHTML = ourAPIresponseJSON.country;
+
       document.getElementById("our-api-image").src = ourAPIresponseJSON.profilePicture
+
+
+
 
     </script>
   </body>

@@ -6,7 +6,21 @@ app.use(cors());
 
 const users = [
   { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
-  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" }
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+  { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+    { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+    { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+    { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+    { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+    { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
+    { name: "carlos", profilePicture: "https://cdn2.thecatapi.com/images/DBmIBhhyv.jpg", country: "mexico", age: 38, gender: "male" },
+  { name: "mahdia", profilePicture: "https://cdn2.thecatapi.com/images/FCNqMC83P.jpg", country: "Afghanistan", age: 22, gender: "female" },
 ];
 
 
@@ -16,6 +30,10 @@ app.get('/user/', (req, res) => {
     console.log("input from user is: " + name);
     const user = users.find(u => u.name === name) 
     res.json(user);
+});
+
+app.get('/users/', (req, res) => {
+    res.json(users);
 });
 
 
