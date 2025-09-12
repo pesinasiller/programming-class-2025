@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ES6+ with API</title>
+  </head>
+  <body>
+    <h1>Random User</h1>
+
+    <div id="user-name"></div>
+    <img id="our-api-image" />
+    <script type="module">
+        // external API
+      const res = await fetch("https://randomuser.me/api/");
+      const data = await res.json(); // parsing
+      const user = data.results[0];
+      const { email, gender, name, picture, location, ...other } = user;
+      const { first, last, title } = name;
+      document.getElementById("user-name").innerHTML =
+        "User name from randomuser.me: " + title + " " + first + " " + last;
+
+
+        // our own api
+      const responseFromOurAPI = await fetch("http://127.0.0.1:3000/user/?name=mahdia");   
+      console.log({ responseFromOurAPI })
+      const ourAPIresponseJSON = await responseFromOurAPI.json();
+      console.log(ourAPIresponseJSON)
+      document.getElementById("our-api-image").src = ourAPIresponseJSON.profilePicture
+
+    </script>
+  </body>
+</html>

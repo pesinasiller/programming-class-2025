@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ES6+ with API</title>
+  </head>
+  <body>
+    <h1>Random User</h1>
+    <div id="user"></div>
+    <div id="user-name"></div>
+    <div id="user-name-template"></div>
+    <div id="email"></div>
+
+    <script type="module">
+      const res = await fetch("https://randomuser.me/api/");
+      const data = await res.json(); // parsing
+
+      const user = data.results[0];
+
+      const { email, gender, name, picture, location, ...other } = user;
+
+      const { first, last, title } = name;
+
+  
+
+      console.log({picture})
+      
+ 
+      document.getElementById("user-name").innerHTML =
+        "User name: " + title + " " + first + " " + last;
+
+      document.getElementById(
+        "user-name-template"
+      ).innerHTML = `User name: ${title} ${first} ${last}`;
+  
+
+    //  document.getElementById("email").innerHTML = gender;
+
+      const html = `
+         <img src="${picture.extralarge}" alt="Photo of ${first}" />
+         <p><strong>Name:</strong> ${first} ${last}</p>
+         <p><strong>Email:</strong> ${email}</p>
+         <p><strong>Country:</strong> ${country}</p>
+       `;
+      
+        document.getElementById('user').innerHTML = html;
+      
+
+      
+      
+      
+      
+      
+      // Use fetch to get data from a public API
+      /*
+       const res = await fetch('https://randomuser.me/api/');
+       const data = await res.json();
+       const user = data.results[0];
+
+       // ✅ Destructuring
+       const {
+         name: { first, last },
+         email,
+         location: { country },
+         picture: { large: photo },
+         ...rest // ✅ Rest operator (captures remaining properties)
+       } = user;
+
+       // ✅ Template literals
+       const html = `
+         <img src="${photo}" alt="Photo of ${first}" />
+         <p><strong>Name:</strong> ${first} ${last}</p>
+         <p><strong>Email:</strong> ${email}</p>
+         <p><strong>Country:</strong> ${country}</p>
+       `;
+
+       document.getElementById('user').innerHTML = html;
+
+       // ✅ Spread operator (create a copy of the user)
+       const userCopy = { ...user };
+       console.log('Copy with spread:', userCopy);
+       */
+    </script>
+  </body>
+</html>
