@@ -1,5 +1,34 @@
 const express = require("express");
 const cors = require("cors");
+const mysql = require("mysql2");
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "blog",
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error("Error connecting to MySQL:", err);
+    return;
+  }
+  console.log("connected to MySQL ✅");
+});
+
+const sql = "SELECT * FROM users where id = 4";
+
+connection.query(sql, (error, results) => {
+  if (error) {
+    console.error("Error in query:", error);
+    return;
+  }
+
+  console.log("users:");
+  console.log(results);
+  console.table(results);
+});
 
 const app = express();
 app.use(cors());
@@ -154,21 +183,33 @@ let users = [
   },
 ];
 
-// alert("adsfadf")
-
 app.get("/user/", (req, res) => {
-  console.log(req.query);
   const id = req.query.userId;
-
   console.log("input from user is: " + id);
 
-  const user = users.find((user) => user.id === parseInt(id));
-  console.log("user found: ", user);
-  res.json(user);
+  const sql = `SELECT * FROM users where id = ${id}`;
+
+  connection.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error in query:", error);
+      return;
+    }
+    console.log("users:");
+    console.table(results);
+    res.json(results);
+  });
 });
 
 app.get("/users/", (req, res) => {
-  res.json(users);
+  const sql = `SELECT * FROM users`;
+  connection.query(sql, (error, results) => {
+    if (error) {
+      console.error("Error in query:", error);
+      return;
+    }
+    console.table(results);
+    res.json(results);
+  });
 });
 
 app.get("/error/", (req, res) => {
